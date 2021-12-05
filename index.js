@@ -7,11 +7,14 @@ const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
+// template generater for cards
+const template = require('./templater');
 
 const team = [];
 const ID= [];
 
 // initial quesitons
+
 inquirer
     .prompt([
         {
