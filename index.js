@@ -1,4 +1,8 @@
 //Grab all the classses , inquirer , pATH , generateHTML 
+const Manager = require("./lib/Manager");
+const Employee = require("./lib/Employee");
+const Engineer = require("./lib/Engineer");
+constIntern = require("./lib/Intern");
 
 //create an init() 
 //welcome message 
