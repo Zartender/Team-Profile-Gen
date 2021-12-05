@@ -14,7 +14,7 @@ const ID = [];
 const templater = require('./templater')
 
 
-
+// questions prompted via inquirer
 inquirer
     .prompt([
         {
@@ -43,6 +43,13 @@ inquirer
         },
        
     ])
+.then((answers) => {
+    console.log(answers);
+    const newManager = new Manager(answers.name, answers.id, answers.email, answers.office);
+    team.push(newManager);
+    ID.push(answers.managerID);
+});
+
 
 
 //create an init() 
