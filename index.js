@@ -67,7 +67,7 @@ inquirer
                     case 'Intern':
                         questionsForIntern();
                     default:
-                        build(team);
+                        createTeam(team);
                 }
     
             })

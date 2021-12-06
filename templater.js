@@ -39,7 +39,6 @@ function generate(team){
                         <li class="list-group-item">${team[0].getTitle()}</li>
                         <li class="list-group-item">${team[0].getID()}</li>
                         <li class="list-group-item">${team[0].getEmail()}</li>
-                        <li class="list-group-item">${team[0].getNumber()}</li>
                     </ul>
     
                 </div>
