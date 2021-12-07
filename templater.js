@@ -3,8 +3,9 @@ const Engineer = require('./lib/Engineer')
 const Intern = require('./lib/Intern')
 
 
-function generate(team){
-    console.log(team);
+function generate(team) {
+    console.log("Templater", team);
+
     return `<!DOCTYPE html>
     <html lang='en'>
     
@@ -26,61 +27,65 @@ function generate(team){
         </div>
     
         <div class='container row'>
-            <!-- Card for Manager -->
     
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                <div class="card-header shadow p-3 mb-5 rounded">
-                    <h5 class="card-title">Name</h5>
-                    <h6 class="card-title">Title</h6>
-                </div>
-                <div class="card-body ">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item ">${team[0].getName()}</li>
-                        <li class="list-group-item">${team[0].getTitle()}</li>
-                        <li class="list-group-item">${team[0].getID()}</li>
-                        <li class="list-group-item">${team[0].getEmail()}</li>
-                    </ul>
-    
-                </div>
-            </div>
-    
-    
-            <!-- Card for Engineer -->
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                <div class="card-header shadow p-3 mb-5 rounded">
-                    <h5 class="card-title">Name</h5>
-                    <h6 class="card-title">Title</h6>
-                </div>
-                <div class="card-body ">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">${team[1].getName()}</li>
-                        <li class="list-group-item">${team[1].getTitle()}</li>
-                        <li class="list-group-item">${team[1].getID()}</li>
-                        <li class="list-group-item">${team[1].getEmail()}</li>
-                        <li class="list-group-item">${team[1].getGithub()}</li>
-                    </ul>
-    
-                </div>
-            </div>
-    
-    
-    
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
-                <div class="card-header shadow p-3 mb-5 rounded">
-                    <h5 class="card-title">Name</h5>
-                    <h6 class="card-title">Title</h6>
-                </div>
-                <div class="card-body ">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">${team[2].getName()}</li>
-                        <li class="list-group-item">${team[2].getTitle()}</li>
-                        <li class="list-group-item">${team[2].getID()}</li>
-                        <li class="list-group-item">${team[2].getEmail()}</li>
-                        <li class="list-group-item">${team[2].getEducation()}</li>
-                    </ul>
-    
-                </div>
-            </div>
+            ${team.map(member => {
+        console.log(member.getRole());
+        //Card for Manager 
+        if (member.getRole() === "Manager") {
+            return `<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                    <div class="card-header shadow p-3 mb-5 rounded">
+                        <h5 class="card-title">${member.name}</h5>
+                        <h6 class="card-title">${member.getRole()}</h6>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"> Name: ${member.getName()}</li>
+                            <li class="list-group-item"> Role: ${member.getRole()}</li>
+                            <li class="list-group-item"> ID: ${member.getId()}</li>
+                            <li class="list-group-item"> Email: ${member.getEmail()}</li>
+                            <li class="list-group-item"> Office Number: ${member.getOffice()}</li>
+                        </ul>
+                    </div>
+                </div>`;
+        }
+        else if (member.getRole() === "Engineer") {
+            return `<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                    <div class="card-header shadow p-3 mb-5 rounded">
+                        <h5 class="card-title">${member.name}</h5>
+                        <h6 class="card-title">${member.getRole()}</h6>
+                    </div>
+                    <div class="card-body ">
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> Name: ${member.getName()}</li>
+                        <li class="list-group-item"> Role: ${member.getRole()}</li>
+                        <li class="list-group-item"> ID: ${member.getId()}</li>
+                        <li class="list-group-item"> Email: ${member.getEmail()}</li>
+                            <li class="list-group-item">Github:${member.getGithub()}</li>
+                        </ul>
+        
+                    </div>
+                </div>`;
+        } else {
+            return `<div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;">
+                    <div class="card-header shadow p-3 mb-5 rounded">
+                        <h5 class="card-title">${member.name}</h5>
+                        <h6 class="card-title">${member.getRole()}</h6>
+                    </div>
+                    <div class="card-body ">
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item"> Name: ${member.getName()}</li>
+                        <li class="list-group-item"> Role: ${member.getRole()}</li>
+                        <li class="list-group-item"> ID: ${member.getId()}</li>
+                        <li class="list-group-item"> Email: ${member.getEmail()}</li>
+                            <li class="list-group-item">${member.getEducation()}</li>
+                        </ul>
+        
+                    </div>
+                </div>`;
+        }
+    })
+        }
+        <!--ending the loop -->
     
     
         </div>

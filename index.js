@@ -11,7 +11,7 @@ const fs = require('fs');
 const generate = require('./templater');
 
 const team = [];
-const ID= [];
+const ID = [];
 
 
 
@@ -39,39 +39,42 @@ inquirer
         },
 
     ])
-        .then((answers) => {
-            console.log(answers)
-            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-            team.push(manager);
-            ID.push(answers.managerId)
-            menu();
-        });
-    
-    function menu() {
-        inquirer.prompt([
-                {
-                    name: 'team',
-                    type: 'list',
-                    choices: ['Engineer', 'Intern', 'Finished'],
-                    message: 'Would you like to add another team member?',
-                },
-            ])
-            .then(userchoice => {
-                console.log(userchoice);
-                switch (userchoice.team) {
-                    case 'Manager':
-                        questionsForManager();
-                    case 'Engineer':
-                        questionsForEngineer();
-                        break;
-                    case 'Intern':
-                        questionsForIntern();
-                    default:
-                        createTeam(team);
-                }
-    
-            })
-    }
+    .then((answers) => {
+        console.log(answers)
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        team.push(manager);
+        ID.push(answers.managerId)
+        menu();
+    });
+
+function menu() {
+    inquirer.prompt([
+        {
+            name: 'team',
+            type: 'list',
+            choices: ['Engineer', 'Intern', 'Finished'],
+            message: 'Would you like to add another team member?',
+        },
+    ])
+        .then(userchoice => {
+            console.log(userchoice);
+            switch (userchoice.team) {
+                case 'Manager':
+                    questionsForManager();
+                    break;
+                case 'Engineer':
+                    questionsForEngineer();
+                    break;
+                case 'Intern':
+                    questionsForIntern();
+                    break;
+                default:
+                    createTeam(team);
+                    break;
+            }
+
+        })
+}
 // Adding a manager
 function questionsForManager() {
     inquirer.prompt([
@@ -105,7 +108,7 @@ function questionsForManager() {
     ])
         .then((answers) => {
             console.log(answers)
-            const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+            const manager = new Manager(answers.name, answers.id, answers.email, answers.office);
             team.push(manager);
             ID.push(answers.managerId)
             menu();
@@ -185,9 +188,12 @@ function questionsForIntern() {
 }
 
 function createTeam(team) {
-    console.log(team);
+    console.log("Create Team Msg All members: ", team);
     const templater = generate(team);
     fs.writeFile('index.html', templater, 'utf-8', (err) => err ?
         console.log(err) :
-        console.log('Complete'))
-}                    
+        console.log('Complete')
+        )
+        // process.exit(); 
+
+}
