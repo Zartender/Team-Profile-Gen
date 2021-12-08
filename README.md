@@ -22,9 +22,13 @@ SO THAT I have quick access to their emails and GitHub profiles
 
 The following image shows a mock-up of the generated HTML’s appearance and functionality:
 
-![HTML webpage titled “My Team” features five boxes listing employee names, titles, and other key info.](./Assets/10-object-oriented-programming-homework-demo.png)
+
 
 
 ## View My Video Demo Here!
 
 [Demo](https://watch.screencastify.com/v/uLeexf8haxbjIQ869PbP)
+
+![Demo Image](src/ooptpg.png)
+![Demo Image](src/ooptpg2.png)
+![Demo Image](src/ooptpg3.png)
